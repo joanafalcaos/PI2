@@ -4,65 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Dashboard - Dados Censo Escolar 2023</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="index.js"></script>
+    <title>Censo Escolar - Bibliotecas Escolares</title>
 </head>
 <body>
     <header>
         <h1 class="titulo"><strong>DashBoard - Dados Censo Escolar 2023</strong></h1>
     </header>
+    <section class="home-page loading">
     <div class="resumo">
         <div class="resumo-item verde">
-            <p class="resumo-numero">355</p>
+            <p id="total-schools"></p>
             <p class="resumo-texto">Total de Escolas</p>
         </div>
         <div class="resumo-item azul">
-            <p class="resumo-numero">100</p>
+            <p id="total-schools-with-libraries"></p>
             <p class="resumo-texto">Total de Escolas com Bibliotecas</p>
         </div>
         <div class="resumo-item vermelho">
-            <p class="resumo-numero">255</p>
+            <p id="total-schools-without-libraries"></p>
             <p class="resumo-texto">Total de Escolas sem Bibliotecas</p>
         </div>
     </div>
     <div class="boxes-bibliotecas">
         <div class="box-item">
-            <p class="box-numero">150</p>
-            <p class="box-texto">Total de Bibliotecas em Escolas Públicas e Particulares</p>
+            <p id="total-bibliotecarios"></p>
+            <p class="box-texto">Total de bibliotecários em bibliotecas</p>
         </div>
         <div class="box-item">
-            <p class="box-numero">90</p>
+            <p id="total-libraries-gov"></p>
             <p class="box-texto">Total de Bibliotecas em Escolas Públicas</p>
         </div>
         <div class="box-item">
-            <p class="box-numero">60</p>
+            <p id="total-libraries-privates"></p>
             <p class="box-texto">Total de Bibliotecas em Escolas Particulares</p>
         </div>
     </div>
     <div class="container-graficos">
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas e Particulares com Biblioteca por Estado</p>
-            <div class="placeholder-grafico"></div>
+            <div class="placeholder-grafico"><canvas id="total-libraries-states"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas e Particulares com Biblioteca por Região</p>
-            <div class="placeholder-grafico"></div>
+            <div class="placeholder-grafico"><canvas id="total-libraries-region"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas com Biblioteca por Estado</p>
-            <div class="placeholder-grafico"></div>
+            <div class="placeholder-grafico"><canvas id="total-public-libraries-state"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas com Biblioteca por Região</p>
-            <div class="placeholder-grafico"></div>
+            <div class="placeholder-grafico"><canvas id="total-public-libraries-region"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Particulares com Biblioteca por Estado</p>
-            <div class="placeholder-grafico"></div>
+            <div class="placeholder-grafico"><canvas id="total-private-libraries-state"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Particulares com Biblioteca por Região</p>
-            <div class="placeholder-grafico"></div>
+            <div class="placeholder-grafico"><canvas id="total-private-libraries-region"></canvas></div>
         </div>
     </div>
+    </section>
 </body>
 </html>

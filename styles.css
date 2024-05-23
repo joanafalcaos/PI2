@@ -11,6 +11,35 @@ body {
     color: #333;
 }
 
+/* @keyframes loading {
+    0%{
+        background-position: 0%;
+    }
+    50%{
+        background-position: 50%;
+    }
+    100%{
+        background-position: 100%;
+    }
+}
+
+.home-page.loading *{
+    position: relative;
+}
+
+.home-page.loading *::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(-45deg, white, #f2f2f2, white);
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-size: 400%;
+    animation: loading 1s linear indefinite;
+} */
+
 header {
     background-color: #a5a5a5;
     color: white;
