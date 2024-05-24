@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <title>Censo Escolar - Bibliotecas Escolares</title>
 </head>
 <body>
@@ -44,29 +43,31 @@
     <div class="container-graficos">
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas e Particulares com Biblioteca por Estado</p>
-            <div class="placeholder-grafico"><canvas id="total-libraries-states"></canvas></div>
+            <div><canvas class="total-libraries-states" height="80px"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas e Particulares com Biblioteca por Região</p>
-            <div class="placeholder-grafico"><canvas id="total-libraries-region"></canvas></div>
+            <div><canvas class="total-libraries-region" height="80px"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas com Biblioteca por Estado</p>
-            <div class="placeholder-grafico"><canvas id="total-public-libraries-state"></canvas></div>
+            <div><canvas class="total-public-libraries-state" height="80px"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas com Biblioteca por Região</p>
-            <div class="placeholder-grafico"><canvas id="total-public-libraries-region"></canvas></div>
+            <div><canvas class="total-public-libraries-region" height="80px"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Particulares com Biblioteca por Estado</p>
-            <div class="placeholder-grafico"><canvas id="total-private-libraries-state"></canvas></div>
+            <div><canvas class="total-private-libraries-state" height="80px"></canvas></div>
         </div>
         <div class="grafico">
             <p class="titulo-graficos">Gráfico de Quantidade de Escolas Particulares com Biblioteca por Região</p>
-            <div class="placeholder-grafico"><canvas id="total-private-libraries-region"></canvas></div>
+            <div><canvas class="total-private-libraries-region" height="80px"></canvas></div>
         </div>
     </div>
     </section>
+
+    <script src="index.js"></script>
 </body>
 </html>
