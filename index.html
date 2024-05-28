@@ -5,67 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <title>Censo Escolar - Bibliotecas Escolares</title>
+    <title>Dashboard</title>
 </head>
 <body>
     <header>
-        <h1 class="titulo"><strong>DashBoard - Dados Censo Escolar</strong></h1>
+        <h1 class="titulo"><strong>Bibliotecas Escolares Públicas - RMR Recife</strong></h1>
     </header>
     <section class="home-page loading">
-    <div class="resumo">
-        <div class="resumo-item verde">
-            <p id="total-schools"></p>
-            <p class="resumo-texto">Total de Escolas</p>
+    
+        <h4 class="welcome-msg">Olá, seja bem-vindo! Este dashboard objetiva concentrar os dados das escolas públicas da Região
+        metropolitana do Recife, com enfoque nos espaços designados às bibliotecas e/ou salas de leitura.
+        </h4>
+
+        <center><div class="menu">
+            <button onclick="change('general')" id="general">Geral</button>
+            <button onclick="change('abreu')" id="abreu">Abreu e Lima</button>
+            <button onclick="change('cabo')" id="cabo">Cabo de Sto. Agostinho</button>
+            <button onclick="change('camaragibe')" id="camaragibe">Camaragibe</button>
+            <button onclick="change('goiana')" id="goiana">Goiana</button>
+            <button onclick="change('igarassu')" id="igarassu">Igarassu</button>
+            <button onclick="change('itamaraca')" id="itamaraca">Ilha de Itamaracá</button>
+            <button onclick="change('ipojuca')" id="ipojuca">Ipojuca</button>
+            <button onclick="change('itapissuma')" id="itapissuma">Itapissuma</button>
+            <button onclick="change('jaboatao')" id="jaboatao">Jaboatão dos Guararapes</button>
+            <button onclick="change('moreno')" id="moreno">Moreno</button>
+            <button onclick="change('olinda')" id="olinda">Olinda</button>
+            <button onclick="change('paulista')" id="paulista">Paulista</button>
+            <button onclick="change('recife')" id="recife">Recife</button>
+            <button onclick="change('slourenco')" id="slourenco">São Lourenço da Mata</button>
         </div>
-        <div class="resumo-item azul">
-            <p id="total-schools-with-libraries"></p>
-            <p class="resumo-texto">Total de Escolas com Bibliotecas</p>
-        </div>
-        <div class="resumo-item vermelho">
-            <p id="total-schools-without-libraries"></p>
-            <p class="resumo-texto">Total de Escolas sem Bibliotecas</p>
-        </div>
-    </div>
-    <div id="resultadoContainer"></div>
-    <div class="boxes-bibliotecas">
-        <div class="box-item">
-            <p id="total-bibliotecarios"></p>
-            <p class="box-texto">Total de bibliotecários em bibliotecas</p>
-        </div>
-        <div class="box-item">
-            <p id="total-libraries-gov"></p>
-            <p class="box-texto">Total de Bibliotecas em Escolas Públicas</p>
-        </div>
-        <div class="box-item">
-            <p id="total-libraries-privates"></p>
-            <p class="box-texto">Total de Bibliotecas em Escolas Particulares</p>
-        </div>
-    </div>
-    <div class="container-graficos">
-        <div class="grafico">
-            <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas e Particulares com Biblioteca por Estado</p>
-            <div><canvas class="total-libraries-states" height="80px"></canvas></div>
-        </div>
-        <div class="grafico">
-            <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas e Particulares com Biblioteca por Região</p>
-            <div><canvas class="total-libraries-region" height="80px"></canvas></div>
-        </div>
-        <div class="grafico">
-            <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas com Biblioteca por Estado</p>
-            <div><canvas class="total-public-libraries-state" height="80px"></canvas></div>
-        </div>
-        <div class="grafico">
-            <p class="titulo-graficos">Gráfico de Quantidade de Escolas Públicas com Biblioteca por Região</p>
-            <div><canvas class="total-public-libraries-region" height="80px"></canvas></div>
-        </div>
-        <div class="grafico">
-            <p class="titulo-graficos">Gráfico de Quantidade de Escolas Particulares com Biblioteca por Estado</p>
-            <div><canvas class="total-private-libraries-state" height="80px"></canvas></div>
-        </div>
-        <div class="grafico">
-            <p class="titulo-graficos">Gráfico de Quantidade de Escolas Particulares com Biblioteca por Região</p>
-            <div><canvas class="total-private-libraries-region" height="80px"></canvas></div>
-        </div>
+        </center>
+
+    <center><img src="img/rmr_mapa.png" alt="Mapa da RMR de Recife" title="Mapa da RMR de Recife" class="map" id="map"></center>
+    
+    <div class="graficos">
+        <div class="box-total-schools"><p>Total de escolas</p><p id="total-schools-value"></p></canvas></div>
+        <div class="first-chart"><p>Tipo de admnistração</p><canvas class="school-type-adm" style="width: 100%; height: 250px;"></canvas></div>
+        <div class="second-chart"><p>Relação entre escolas x bibliotecas</p><canvas class="schools-libraries" style="width: 100%; height: 250px;"></canvas></div>
+        <div class="third-chart"><p>Salas x Salas de Biblioteca</p><canvas class="schools-rooms-vs-libraries" style="width: 100%; height: 250px;"></canvas></div>
+        <div class="fourth-chart"><p>Escolas com bibliotecários</p><canvas class="schools-with-librarian" style="width: 100%; height: 250px;"></canvas></div>
     </div>
     </section>
 
