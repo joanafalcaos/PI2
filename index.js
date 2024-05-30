@@ -93,7 +93,7 @@ const cidades = {
 const ctx = document.getElementsByClassName("school-type-adm");
 
 const data = {
-  labels: ["Municipal", "Estadual", "Federal"],
+  labels: ["Federal", "Estadual", "Municipal"],
   datasets: [{
     label: "Quantidade",
     data: [5,10,2],
@@ -144,6 +144,7 @@ const headers = {
 const totalSchoolsElement = document.getElementById('total-schools-value');
 let tipo_adm_valores = []
 
+//BLOCO DO GERAL - INÍCIO
 // cria um filtro usando chave/parametro URLSearchParams do js
 const totalScholls = async () => {
   const params = new URLSearchParams({
@@ -173,6 +174,49 @@ const totalScholls = async () => {
   }
 };
 totalScholls();
+
+
+async function admCountGeneral() {
+  for (let i = 0; i < 3; i++) {
+    let controle  = i+1;
+      await typeAdmGeneral(controle);
+  }
+}
+admCountGeneral();
+
+async function typeAdmGeneral(controle) {
+  const params = new URLSearchParams({
+    count: 1,
+    where: JSON.stringify({
+      tipo_adm: controle,
+    }),
+  });
+  try {
+    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+      method: "GET",
+      headers: headers,
+    });
+    if (response.ok) {
+      const data = await response.json();
+      const valor = data.count;
+
+      // Define o valor no índice específico do array com base no controle
+      tipo_adm_valores[controle - 1] = valor;
+
+      console.log("Valor: " + tipo_adm_valores);
+      
+      // Atualiza o gráfico com os novos dados
+      chartUm.data.datasets[0].data = tipo_adm_valores;
+      chartUm.update();
+    } else {
+      throw new Error("Network response was not ok");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// BLOCO DO GERAL - FIM
 
 const getCity = async (cidadeValor) => {
   const params = new URLSearchParams({
@@ -253,7 +297,7 @@ function change(buttonId) {
 
   if (buttonId === 'general') {
     totalScholls();
-    admCount()
+    admCountGeneral();
   } else {
     getCity(cidades[buttonId].id_cidade);
     admCount(cidades[buttonId].id_cidade);
