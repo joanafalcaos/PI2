@@ -1,3 +1,95 @@
+const cidades = {
+  'general': {
+    src : 'img/rmr_mapa.png',
+    alt : 'Mapa da RMR de Recife',
+    title : 'Mapa da RMR de Recife',
+  },
+  'abreu': {
+    src : 'img/mapa_abreu_lima.png',
+    alt : 'Abreu e Lima',
+    title : 'Abreu e Lima',
+    id_cidade : 2600054,
+  },
+  'cabo': {
+    src : 'img/cabo_sto_agostinho_mapa.png',
+    alt : 'Cabo de Santo Agostinho',
+    title : 'Cabo de Santo Agostinho',
+    id_cidade : 2602902,
+  },
+  'camaragibe': {
+    src : 'img/camaragibe_mapa.png',
+    alt : 'Camaragibe',
+    title : 'Camaragibe',
+    id_cidade : 2603454,
+  },
+  'goiana': {
+    src : 'img/goiana_mapa.png',
+    alt : 'Goiana',
+    title : 'Goiana',
+    id_cidade : 2606200,
+  },
+  'igarassu': {
+    src : 'img/igarassu_mapa.png',
+    alt : 'Igarassu',
+    title : 'Igarassu',
+    id_cidade : 2606804,
+  },
+  'itamaraca': {
+    src : 'img/ilha_itamaraca_mapa.png',
+    alt : 'Ilha de Itamaracá',
+    title : 'Ilha de Itamaracá',
+    id_cidade : 2607604,
+  },
+  'ipojuca': {
+    src : 'img/ipojuca_mapa.png',
+    alt : 'Ipojuca',
+    title : 'Ipojuca',
+    id_cidade : 2607208,
+  },
+  'itapissuma': {
+    src : 'img/itapissuma_mapa.png',
+    alt : 'Itapissuma',
+    title : 'Itapissuma',
+    id_cidade: 2607752,
+    },
+ 'jaboatao': {
+    src : 'img/jaboatao_guararapes_mapa.png',
+    alt : 'Jaboatão dos Guararapes',
+    title : 'Jaboatão dos Guararapes',
+    id_cidade : 2607901,
+    },
+ 'moreno': {
+    src : 'img/moreno_mapa.png',
+    alt : 'Moreno',
+    title : 'Moreno',
+    id_cidade : 2609402,
+    },
+ 'olinda': {
+    src : 'img/olinda_mapa.png',
+    alt : 'Olinda',
+    title : 'Olinda',
+    id_cidade : 2609600,
+    },
+ 'paulista': {
+    src : 'img/paulista_mapa.png',
+    alt : 'Paulista',
+    title : 'Paulista',
+    id_cidade: 2610707,
+    },
+ 'recife': {
+    src : 'img/recife_mapa.png',
+    alt : 'Recife',
+    title : 'Recife',
+    id_cidade : 2611606,
+    },
+ 'slourenco': {
+    src : 'img/sao_lourenco_mapa.png',
+    alt : 'São Lourenço da Mata',
+    title : 'São Lourenço da Mata',
+    id_cidade: 2613701,
+  },
+}
+
 const ctx = document.getElementsByClassName("school-type-adm");
 
 const data = {
@@ -41,199 +133,129 @@ const config = {
 
 const chartUm = new Chart(ctx, config);
 
-var ctx2 = document.getElementsByClassName("total-libraries-region")
-
-var chartDois = new Chart(ctx2, {
-    type:'line',
-    data:{
-      labels: ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"],
-      datasets: [{
-        label: "Quantidade",
-        data: [5,10,5,14,20,15,6,14,8,12,15,5,10,5,10,5,14,20,15,6,14,8,12,15,5,10,12],
-        borderWidth: 3,
-        borderColor: 'rgba(77,166,253,0.85)',
-        backgroundColor: 'transparent',
-      }]
-
-    }
-  })
-
-var ctx3 = document.getElementsByClassName("total-public-libraries-state")
-
-var chartTres = new Chart(ctx3, {
-    type:'line',
-    data:{
-      labels: ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"],
-      datasets: [{
-        label: "Quantidade",
-        data: [5,10,5,14,20,15,6,14,8,12,15,5,10,5,10,5,14,20,15,6,14,8,12,15,5,10,12],
-        borderWidth: 3,
-        borderColor: 'rgba(77,166,253,0.85)',
-        backgroundColor: 'transparent',
-      }]
-
-    }
-  })
-
-var ctx4 = document.getElementsByClassName("total-public-libraries-region")
-
-var chartQuatro = new Chart(ctx4, {
-    type:'line',
-    data:{
-      labels: ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"],
-      datasets: [{
-        label: "Quantidade",
-        data: [5,10,5,14,20,15,6,14,8,12,15,5,10,5,10,5,14,20,15,6,14,8,12,15,5,10,12],
-        borderWidth: 3,
-        borderColor: 'rgba(77,166,253,0.85)',
-        backgroundColor: 'transparent',
-      }]
-
-    }
-  })
-
-var ctx5 = document.getElementsByClassName("total-private-libraries-state")
-
-var chartCinco = new Chart(ctx5, {
-    type:'line',
-    data:{
-      labels: ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"],
-      datasets: [{
-        label: "Quantidade",
-        data: [5,10,5,14,20,15,6,14,8,12,15,5,10,5,10,5,14,20,15,6,14,8,12,15,5,10,12],
-        borderWidth: 3,
-        borderColor: 'rgba(77,166,253,0.85)',
-        backgroundColor: 'transparent',
-      }]
-
-    }
-  })
-
-  const censoPeClassUrl = "https://parseapi.back4app.com/classes/CensoPeClass";
-  const headers = {
-    "X-Parse-Application-Id": "zS4HA9IMZEWTlTnnx4C0pDpFssKbp8LM9aNxkhY8",
-    "X-Parse-REST-API-Key": "1A7kwTiWyeg1GwXDl8rcoyStzWJB4SId5PX8wGOh",
-  };
-  const headersJson = {
-    ...headers,
-    "Content-Type": "application/json",
-  };
-
-  // BOX DE ESCOLAS SEM BIBLIOTECAS
-  const getQtAnyLibrarie = async (anyLibrarie) => {
-    let url = censoPeClassUrl;
-    if(anyLibrarie){
-        const whereClause = JSON.stringify({
-            IN_BIBLIOTECA: 0
-          });
-        url = `${url}?where=${whereClause}`;
-        url = encodeURI(url);
-        console.log("url", url);
-    }
-    const response = await fetch(url, {
-        method: "GET",
-        headers: headers,
-      });
-      const data = await response.json();
-      return data.results;
-  };
-
-const showQtAnyLibrarie = async () => {
-  //Chamando a func para pegar os resultados
-  const escolasComBiblioteca = await getQtAnyLibrarie(true);
-
-  //limpando dados antigos
-  resultadoContainer.innerHTML = "";
-
-  // Iterando para contar a qt
-  var count = 0;
-  escolasComBiblioteca.forEach(escola => {
-    console.log(escola)
-    count++;
-  });
-    var anyLibrariesQt = document.getElementById('total-schools-without-libraries')
-    anyLibrariesQt.textContent = count;
+// BOX DE ESCOLAS SEM BIBLIOTECAS
+const censoPeClassUrl = "https://parseapi.back4app.com/classes/BaseCensoRmr";
+const headers = {
+  "X-Parse-Application-Id": "vI8Ew2vCgezbMDismPbmWizkpiX72IISZ1rmCP9G",
+  "X-Parse-REST-API-Key": "S0OPV4TGEgSec4ua8gbSFuGCb9Xm5fDcqkxgvwAe",
+  "Content-Type": "application/json",
 };
 
-showQtAnyLibrarie();
+const totalSchoolsElement = document.getElementById('total-schools-value');
+let tipo_adm_valores = []
+
+// cria um filtro usando chave/parametro URLSearchParams do js
+const totalScholls = async () => {
+  const params = new URLSearchParams({
+    count: 1,
+  });
+//passa esse parametro para toString para usar no fetch
+  try {
+    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+      method: "GET",
+      headers: headers,
+    });
+// se a resposta for sucesso, traz o resultado em json
+    if (response.ok) {
+      const data = await response.json();
+      const totalSchoolsValue = data.count;
+      if (totalSchoolsElement) {
+        totalSchoolsElement.textContent = '';
+        totalSchoolsElement.textContent = totalSchoolsValue;
+      } else {
+        console.error("Element with id 'total-schools-value' not found.");
+      }
+    } else {
+      throw new Error("Network response was not ok");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+};
+totalScholls();
+
+const getCity = async (cidadeValor) => {
+  const params = new URLSearchParams({
+    count: 1,
+    where: JSON.stringify({
+      id_cidade: cidadeValor,
+    }),
+  });
+  try {
+    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+      method: "GET",
+      headers: headers,
+    });
+    if (response.ok) {
+      const data = await response.json();
+      const totalAbreuLimaValue = data.count;
+      if (totalSchoolsElement) {
+        totalSchoolsElement.textContent = '';
+        totalSchoolsElement.textContent = totalAbreuLimaValue;
+      } else {
+        console.error("Element with id 'total-schools-value' not found.");
+      }
+    } else {
+      throw new Error("Network response was not ok");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+};
+
+async function admCount(cidadeValor) {
+  for (let i = 0; i < 3; i++) {
+    let controle  = i+1;
+      await getTypeAdm(controle,cidadeValor);
+  }
+}
+
+async function getTypeAdm(controle,cidadeValor) {
+  const params = new URLSearchParams({
+    count: 1,
+    where: JSON.stringify({
+      id_cidade: cidadeValor,
+      tipo_adm: controle,
+    }),
+  });
+  try {
+    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+      method: "GET",
+      headers: headers,
+    });
+    if (response.ok) {
+      const data = await response.json();
+      const valor = data.count;
+
+      // Define o valor no índice específico do array com base no controle
+      tipo_adm_valores[controle - 1] = valor;
+
+      console.log("Valor: " + tipo_adm_valores);
+      
+      // Atualiza o gráfico com os novos dados
+      chartUm.data.datasets[0].data = tipo_adm_valores;
+      chartUm.update();
+    } else {
+      throw new Error("Network response was not ok");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 /// onclick func
 function change(buttonId) {
   var img = document.getElementById('map');
-  switch(buttonId) {
-      case 'general':
-          img.src = 'img/rmr_mapa.png';
-          img.alt = 'Mapa da RMR de Recife';
-          img.title = 'Mapa da RMR de Recife';
-          break;
-      case 'abreu':
-          img.src = 'img/mapa_abreu_lima.png'; // Substitua pelo caminho da outra imagem
-          img.alt = 'Abreu e Lima'; // Substitua pela descrição da outra imagem
-          img.title = 'Abreu e Lima'; // Substitua pelo título da outra imagem
-          break;
-      case 'cabo':
-          img.src = 'img/cabo_sto_agostinho_mapa.png';
-          img.alt = 'Cabo de Santo Agostinho';
-          img.title = 'Cabo de Santo Agostinho';
-          break;
-      case 'camaragibe':
-          img.src = 'img/camaragibe_mapa.png';
-          img.alt = 'Camaragibe';
-          img.title = 'Camaragibe';
-          break;
-      case 'goiana':
-          img.src = 'img/goiana_mapa.png';
-          img.alt = 'Goiana';
-          img.title = 'Goiana';
-          break;
-      case 'igarassu':
-          img.src = 'img/igarassu_mapa.png';
-          img.alt = 'Igarassu';
-          img.title = 'Igarassu';
-          break;
-      case 'itamaraca':
-          img.src = 'img/ilha_itamaraca_mapa.png';
-          img.alt = 'Ilha de Itamaracá';
-          img.title = 'Ilha de Itamaracá';
-          break;
-      case 'ipojuca':
-          img.src = 'img/ipojuca_mapa.png';
-          img.alt = 'Ipojuca';
-          img.title = 'Ipojuca';
-          break;
-      case 'itapissuma':
-          img.src = 'img/itapissuma_mapa.png';
-          img.alt = 'Itapissuma';
-          img.title = 'Itapissuma';
-          break;
-      case 'jaboatao':
-          img.src = 'img/jaboatao_guararapes_mapa.png';
-          img.alt = 'Jaboatão dos Guararapes';
-          img.title = 'Jaboatão dos Guararapes';
-          break;
-      case 'moreno':
-          img.src = 'img/moreno_mapa.png';
-          img.alt = 'Moreno';
-          img.title = 'Moreno';
-          break;
-      case 'olinda':
-          img.src = 'img/olinda_mapa.png';
-          img.alt = 'Olinda';
-          img.title = 'Olinda';
-          break;
-      case 'paulista':
-          img.src = 'img/paulista_mapa.png';
-          img.alt = 'Paulista';
-          img.title = 'Paulista';
-          break;
-      case 'recife':
-          img.src = 'img/recife_mapa.png';
-          img.alt = 'Recife';
-          img.title = 'Recife';
-          break;
-      case 'slourenco':
-          img.src = 'img/sao_lourenco_mapa.png';
-          img.alt = 'São Lourenço da Mata';
-          img.title = 'São Lourenço da Mata';
+
+  img.src = cidades[buttonId].src
+  img.alt = cidades[buttonId].alt
+  img.title = cidades[buttonId].title
+
+  if (buttonId === 'general') {
+    totalScholls();
+    admCount()
+  } else {
+    getCity(cidades[buttonId].id_cidade);
+    admCount(cidades[buttonId].id_cidade);
   }
 }
