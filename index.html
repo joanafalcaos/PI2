@@ -18,31 +18,33 @@
         </h4>
 
         <center><div class="menu">
-            <button onclick="change('general')" id="general">Geral</button>
-            <button onclick="change('abreu')" id="abreu">Abreu e Lima</button>
-            <button onclick="change('cabo')" id="cabo">Cabo de Sto. Agostinho</button>
-            <button onclick="change('camaragibe')" id="camaragibe">Camaragibe</button>
-            <button onclick="change('goiana')" id="goiana">Goiana</button>
-            <button onclick="change('igarassu')" id="igarassu">Igarassu</button>
-            <button onclick="change('itamaraca')" id="itamaraca">Ilha de Itamaracá</button>
-            <button onclick="change('ipojuca')" id="ipojuca">Ipojuca</button>
-            <button onclick="change('itapissuma')" id="itapissuma">Itapissuma</button>
-            <button onclick="change('jaboatao')" id="jaboatao">Jaboatão dos Guararapes</button>
-            <button onclick="change('moreno')" id="moreno">Moreno</button>
-            <button onclick="change('olinda')" id="olinda">Olinda</button>
-            <button onclick="change('paulista')" id="paulista">Paulista</button>
-            <button onclick="change('recife')" id="recife">Recife</button>
-            <button onclick="change('slourenco')" id="slourenco">São Lourenço da Mata</button>
+            <button onclick="change('general')" id="general" class="btn">Geral</button>
+            <button onclick="change('abreu')" id="abreu" class="btn">Abreu e Lima</button>
+            <button onclick="change('cabo')" id="cabo" class="btn">Cabo de Sto. Agostinho</button>
+            <button onclick="change('camaragibe')" id="camaragibe" class="btn">Camaragibe</button>
+            <button onclick="change('goiana')" id="goiana" class="btn">Goiana</button>
+            <button onclick="change('igarassu')" id="igarassu" class="btn">Igarassu</button>
+            <button onclick="change('itamaraca')" id="itamaraca" class="btn">Ilha de Itamaracá</button>
+            <button onclick="change('ipojuca')" id="ipojuca" class="btn">Ipojuca</button>
+            <button onclick="change('itapissuma')" id="itapissuma" class="btn">Itapissuma</button>
+            <button onclick="change('jaboatao')" id="jaboatao" class="btn">Jaboatão dos Guararapes</button>
+            <button onclick="change('moreno')" id="moreno" class="btn">Moreno</button>
+            <button onclick="change('olinda')" id="olinda" class="btn">Olinda</button>
+            <button onclick="change('paulista')" id="paulista" class="btn">Paulista</button>
+            <button onclick="change('recife')" id="recife" class="btn">Recife</button>
+            <button onclick="change('slourenco')" id="slourenco" class="btn">São Lourenço da Mata</button>
         </div>
         </center>
 
-    <center><img src="img/rmr_mapa.png" alt="Mapa da RMR de Recife" title="Mapa da RMR de Recife" class="map" id="map"></center>
-    
+    <div class="bloco-resumo">
+        <img src="img/rmr_mapa.png" alt="Mapa da RMR de Recife" title="Mapa da RMR de Recife" class="map" id="map">
+        <div class="box-total-schools"><p>Total de escolas:</p><p id="total-schools-value"></p></div>
+    </div>
+
     <div class="graficos">
-        <div class="box-total-schools"><p>Total de escolas</p><p id="total-schools-value"></p></div>
         <div class="first-chart"><p>Tipo de admnistração</p><canvas class="school-type-adm" style="width: 100%; height: 250px;"></canvas></div>
         <div class="second-chart"><p>Relação entre quantidade de escolas x bibliotecas</p><canvas class="schools-libraries" style="width: 100%; height: 250px;"></canvas></div>
-        <div class="third-chart"><p>Salas x Salas de Biblioteca</p><canvas class="schools-rooms-vs-libraries" style="width: 100%; height: 250px;"></canvas></div>
+        <div class="third-chart"><p>Relação tipo de administração x biblioteca</p><canvas class="schools-rooms-vs-libraries" style="width: 100%; height: 250px;"></canvas></div>
         <div class="fourth-chart"><p>Escolas com bibliotecários</p><canvas class="schools-with-librarian" style="width: 100%; height: 250px;"></canvas></div>
     </div>
     </section>
