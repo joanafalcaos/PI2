@@ -96,7 +96,7 @@ const data = {
   labels: ["Federal", "Estadual", "Municipal"],
   datasets: [{
     label: "Quantidade",
-    data: [5,10,2],
+    data: [],
     borderWidth: 3,
     borderColor: 'rgba(77,166,253,0.85)',
     backgroundColor: 'transparent',
@@ -133,6 +133,48 @@ const config = {
 
 const chartUm = new Chart(ctx, config);
 
+const ctx2 = document.getElementsByClassName("schools-libraries");
+
+const data2 = {
+  labels: ["Escolas com biblioteca","Escolas sem biblioteca"],
+  datasets: [{
+    label: "Quantidade",
+    data: [],
+    borderWidth: 3,
+    borderColor: 'rgba(77,166,253,0.85)',
+    backgroundColor: 'transparent',
+  }]
+};
+
+const config2 = {
+  type: 'pie',
+  data: {
+    labels: data2.labels,
+    datasets: [{
+      label: data2.datasets[0].label,
+      data: data2.datasets[0].data,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+      ]
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Pie Chart'
+      }
+    }
+  }
+};
+
+const chartDois = new Chart(ctx2, config2);
+
 // BOX DE ESCOLAS SEM BIBLIOTECAS
 const censoPeClassUrl = "https://parseapi.back4app.com/classes/BaseCensoRmr";
 const headers = {
@@ -143,6 +185,7 @@ const headers = {
 
 const totalSchoolsElement = document.getElementById('total-schools-value');
 let tipo_adm_valores = []
+let schoolAndLibrariesQt = []
 
 //BLOCO DO GERAL - INÍCIO
 // cria um filtro usando chave/parametro URLSearchParams do js
@@ -184,6 +227,57 @@ async function admCountGeneral() {
 }
 admCountGeneral();
 
+async function getSchoolsAndLibrariesQtTotal() {
+  const params = new URLSearchParams({
+    count: 1,
+    where: JSON.stringify({
+      has_biblio: 1,
+    }),
+  });
+  try {
+    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+      method: "GET",
+      headers: headers,
+    });
+    if (response.ok) {
+      const data = await response.json();
+      const escolasComBiblioteca = data.count;
+      schoolAndLibrariesQt[0] = escolasComBiblioteca;
+
+      const paramsTotalEscolas = new URLSearchParams({
+        count: 1,
+      });
+
+      const responseTotalEscolas = await fetch(`${censoPeClassUrl}?${paramsTotalEscolas.toString()}`, {
+        method: "GET",
+        headers: headers,
+      });
+
+      if (responseTotalEscolas.ok) {
+        const dataTotalEscolas = await responseTotalEscolas.json();
+        const totalEscolasNaCidade = dataTotalEscolas.count;
+        schoolAndLibrariesQt[1] = totalEscolasNaCidade;
+
+        for (let i=0; i< schoolAndLibrariesQt.length; i++){
+          if(i === 1){
+            let controle = schoolAndLibrariesQt[i-1]
+            schoolAndLibrariesQt[i] -= controle;
+          }
+        }
+        chartDois.data.datasets[0].data = schoolAndLibrariesQt;
+        chartDois.update();
+      } else {
+        throw new Error("Network response was not ok");
+      }
+    } else {
+      throw new Error("Network response was not ok");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+getSchoolsAndLibrariesQtTotal();
+
 async function typeAdmGeneral(controle) {
   const params = new URLSearchParams({
     count: 1,
@@ -202,8 +296,6 @@ async function typeAdmGeneral(controle) {
 
       // Define o valor no índice específico do array com base no controle
       tipo_adm_valores[controle - 1] = valor;
-
-      console.log("Valor: " + tipo_adm_valores);
       
       // Atualiza o gráfico com os novos dados
       chartUm.data.datasets[0].data = tipo_adm_valores;
@@ -232,10 +324,10 @@ const getCity = async (cidadeValor) => {
     });
     if (response.ok) {
       const data = await response.json();
-      const totalAbreuLimaValue = data.count;
+      const totalSchools = data.count;
       if (totalSchoolsElement) {
         totalSchoolsElement.textContent = '';
-        totalSchoolsElement.textContent = totalAbreuLimaValue;
+        totalSchoolsElement.textContent = totalSchools;
       } else {
         console.error("Element with id 'total-schools-value' not found.");
       }
@@ -273,8 +365,6 @@ async function getTypeAdm(controle,cidadeValor) {
 
       // Define o valor no índice específico do array com base no controle
       tipo_adm_valores[controle - 1] = valor;
-
-      console.log("Valor: " + tipo_adm_valores);
       
       // Atualiza o gráfico com os novos dados
       chartUm.data.datasets[0].data = tipo_adm_valores;
@@ -287,10 +377,64 @@ async function getTypeAdm(controle,cidadeValor) {
   }
 }
 
+async function getSchoolsAndLibrariesQt(cidadeValor) {
+  const params = new URLSearchParams({
+    count: 1,
+    where: JSON.stringify({
+      id_cidade: cidadeValor,
+      has_biblio: 1,
+    }),
+  });
+  try {
+    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+      method: "GET",
+      headers: headers,
+    });
+    if (response.ok) {
+      const data = await response.json();
+      const escolasComBiblioteca = data.count;
+      schoolAndLibrariesQt[0] = escolasComBiblioteca;
+
+      const paramsTotalEscolas = new URLSearchParams({
+        count: 1,
+        where: JSON.stringify({
+          id_cidade: cidadeValor,
+        }),
+      });
+
+      const responseTotalEscolas = await fetch(`${censoPeClassUrl}?${paramsTotalEscolas.toString()}`, {
+        method: "GET",
+        headers: headers,
+      });
+
+      if (responseTotalEscolas.ok) {
+        const dataTotalEscolas = await responseTotalEscolas.json();
+        const totalEscolasNaCidade = dataTotalEscolas.count;
+        schoolAndLibrariesQt[1] = totalEscolasNaCidade;
+
+        for (let i=0; i< schoolAndLibrariesQt.length; i++){
+          if(i === 1){
+            let controle = schoolAndLibrariesQt[i-1]
+            schoolAndLibrariesQt[i] -= controle;
+          }
+        }
+        chartDois.data.datasets[0].data = schoolAndLibrariesQt;
+        chartDois.update();
+      } else {
+        throw new Error("Network response was not ok");
+      }
+    } else {
+      throw new Error("Network response was not ok");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 /// onclick func
 function change(buttonId) {
   var img = document.getElementById('map');
-
+  
   img.src = cidades[buttonId].src
   img.alt = cidades[buttonId].alt
   img.title = cidades[buttonId].title
@@ -298,8 +442,10 @@ function change(buttonId) {
   if (buttonId === 'general') {
     totalScholls();
     admCountGeneral();
+    getSchoolsAndLibrariesQtTotal();
   } else {
     getCity(cidades[buttonId].id_cidade);
     admCount(cidades[buttonId].id_cidade);
+    getSchoolsAndLibrariesQt(cidades[buttonId].id_cidade)
   }
 }
