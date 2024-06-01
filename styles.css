@@ -23,6 +23,7 @@ body {
     margin-top: 10px;
     border: none;
     background-color: #e6e6e6;
+    cursor: pointer;
 }
 
 .btn:hover{
@@ -30,7 +31,7 @@ body {
     color: white;
 }
 
-.btn:focus{
+.btn-active {
     background-color: blue;
     color: white;
 }
@@ -99,7 +100,7 @@ body {
 }
 .fourth-chart{
     background-color: black;
-        height: 300px;
+    height: 300px;
 }
 .fifth-chart{
     background-color: yellow;

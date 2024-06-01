@@ -551,11 +551,21 @@ async function getTypeAdmLibrariesQt(controle,cidadeValor) {
 
 /// onclick func
 function change(buttonId) {
+  // Removendo a classe ativa de todos os botões
+  var buttons = document.querySelectorAll('.btn');
+  buttons.forEach(function(button) {
+    button.classList.remove('btn-active');
+  });
+
+  // Adicionando a classe ativa ao botão clicado
+  var activeButton = document.getElementById(buttonId);
+  activeButton.classList.add('btn-active');
+
+  // Atualização do mapa e das informações conforme o botão clicado
   var img = document.getElementById('map');
-  
-  img.src = cidades[buttonId].src
-  img.alt = cidades[buttonId].alt
-  img.title = cidades[buttonId].title
+  img.src = cidades[buttonId].src;
+  img.alt = cidades[buttonId].alt;
+  img.title = cidades[buttonId].title;
 
   if (buttonId === 'general') {
     totalScholls();
