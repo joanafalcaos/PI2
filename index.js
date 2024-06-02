@@ -239,7 +239,7 @@ const totalScholls = async () => {
   });
 //passa esse parametro para toString para usar no fetch
   try {
-    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+    const response = await fetch(${censoPeClassUrl}?${params.toString()}, {
       method: "GET",
       headers: headers,
     });
@@ -279,7 +279,7 @@ async function typeAdmGeneral(controle) {
     }),
   });
   try {
-    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+    const response = await fetch(${censoPeClassUrl}?${params.toString()}, {
       method: "GET",
       headers: headers,
     });
@@ -309,7 +309,7 @@ async function getSchoolsAndLibrariesQtTotal() {
     }),
   });
   try {
-    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+    const response = await fetch(${censoPeClassUrl}?${params.toString()}, {
       method: "GET",
       headers: headers,
     });
@@ -322,7 +322,7 @@ async function getSchoolsAndLibrariesQtTotal() {
         count: 1,
       });
 
-      const responseTotalEscolas = await fetch(`${censoPeClassUrl}?${paramsTotalEscolas.toString()}`, {
+      const responseTotalEscolas = await fetch(${censoPeClassUrl}?${paramsTotalEscolas.toString()}, {
         method: "GET",
         headers: headers,
       });
@@ -369,7 +369,7 @@ async function getTypeAdmLibrariesQtGeral(controle) {
     }),
   });
 	try {
-    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+    const response = await fetch(${censoPeClassUrl}?${params.toString()}, {
       method: "GET",
       headers: headers,
     });
@@ -399,7 +399,7 @@ const getCity = async (cidadeValor) => {
     }),
   });
   try {
-    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+    const response = await fetch(${censoPeClassUrl}?${params.toString()}, {
       method: "GET",
       headers: headers,
     });
@@ -436,7 +436,7 @@ async function getTypeAdm(controle,cidadeValor) {
     }),
   });
   try {
-    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+    const response = await fetch(${censoPeClassUrl}?${params.toString()}, {
       method: "GET",
       headers: headers,
     });
@@ -467,7 +467,7 @@ async function getSchoolsAndLibrariesQt(cidadeValor) {
     }),
   });
   try {
-    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+    const response = await fetch(${censoPeClassUrl}?${params.toString()}, {
       method: "GET",
       headers: headers,
     });
@@ -483,7 +483,7 @@ async function getSchoolsAndLibrariesQt(cidadeValor) {
         }),
       });
 
-      const responseTotalEscolas = await fetch(`${censoPeClassUrl}?${paramsTotalEscolas.toString()}`, {
+      const responseTotalEscolas = await fetch(${censoPeClassUrl}?${paramsTotalEscolas.toString()}, {
         method: "GET",
         headers: headers,
       });
@@ -529,7 +529,7 @@ async function getTypeAdmLibrariesQt(controle,cidadeValor) {
     }),
   });
 	try {
-    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+    const response = await fetch(${censoPeClassUrl}?${params.toString()}, {
       method: "GET",
       headers: headers,
     });
