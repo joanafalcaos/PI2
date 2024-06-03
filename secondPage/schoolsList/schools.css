@@ -3,31 +3,42 @@
     padding: 0;
 }
 
-body {
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     color: #333;
-    display: flex;
-}
-
-html, body{
-    height: 100%;
-}
-
-.container {
-    display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 header {
     background-color: #24252a;
     color: white;
     box-shadow: 0 3px 10px #464646;
-    width: 100%;
     padding: 20px 0;
+    text-align: center; /* Centralizar o texto */
+}
+
+.titulo {
+    font-size: 2em;
+    margin: 0;
+    width: 100%; /* Ocupar toda a largura do elemento pai */
+}
+
+.container {
+    display: flex;
+    height: 100%; /* Garantir que a altura da .container seja 100% da altura da página */
 }
 
 main {
     flex: 1;
+    height: 100%; /* Garantir que a altura do main seja 100% da altura da página */
 }
 
 #sidebar {
@@ -130,12 +141,6 @@ main {
     gap: 14px;
 }
 
-.titulo {
-    font-size: 2em;
-    margin: 0;
-    text-align: center;
-}
-
 .welcome-msg {
     margin-left: 20%;
     margin-right: 20%;
@@ -143,33 +148,4 @@ main {
     margin-bottom: 20px;
     text-align: center;
     font-size: 14px;
-}
-
-.map {
-    margin-top: 35px;
-    width: 200px;
-    height: 100px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-}
-
-.images{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.images .map {
-    transition: transform 0.3s ease;
-}
-
-.images .map:hover {
-    transform: scale(1.2);
-}
-
-.images .subtitle{
-    font-size: 12px;
-    margin-top: -20px;
-    text-align: center;
 }
