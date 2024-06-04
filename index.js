@@ -218,6 +218,48 @@ const config3 = {
 
 const chartTres = new Chart(ctx3, config3);
 
+const ctx4 = document.getElementsByClassName("schools-with-librarian");
+
+const data4 = {
+  labels: ["Escolas com bibliotecários","Escolas sem bibliotecários"],
+  datasets: [{
+    label: "Quantidade",
+    data: [],
+    borderWidth: 3,
+    borderColor: 'rgba(77,166,253,0.85)',
+    backgroundColor: 'transparent',
+  }]
+};
+
+const config4 = {
+  type: 'pie',
+  data: {
+    labels: data4.labels,
+    datasets: [{
+      label: data4.datasets[0].label,
+      data: data4.datasets[0].data,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+      ]
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Pie Chart'
+      }
+    }
+  }
+};
+
+const chartQuatro = new Chart(ctx4, config4);
+
 // BOX DE ESCOLAS SEM BIBLIOTECAS
 const censoPeClassUrl = "https://parseapi.back4app.com/classes/BaseCensoRmr";
 const headers = {
@@ -230,6 +272,7 @@ const totalSchoolsElement = document.getElementById('total-schools-value');
 let tipo_adm_valores = []
 let schoolAndLibrariesQt = []
 let tipo_adm_valores_biblio = []
+let schoolWithLibrarian = []
 
 //BLOCO DO GERAL - INÍCIO
 // cria um filtro usando chave/parametro URLSearchParams do js
@@ -359,6 +402,61 @@ async function admCountLibrariesGeral() {
   }
 }
 admCountLibrariesGeral();
+
+async function getSchoolsLibrarianInfoTotal() {
+  const cd1 = {
+    qt_bibliotecarios: { $gt: 0 }
+  };
+
+  const cd2 = {
+    qt_bibliotecarios: { $lt: 1 }
+  };
+
+  const condicao1JSON = JSON.stringify(cd1);
+  const condicao2JSON = JSON.stringify(cd2);
+
+  const params = new URLSearchParams({
+    count: 1,
+    where: condicao1JSON,
+  });
+  try {
+    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+      method: "GET",
+      headers: headers,
+    });
+    if (response.ok) {
+      const data = await response.json();
+      const escolasComBibliotecario = data.count;
+      schoolWithLibrarian[0] = escolasComBibliotecario;
+
+      const paramsTotalEscolas = new URLSearchParams({
+        count: 1,
+        where: condicao2JSON,
+      });
+
+      const responseTotalEscolas = await fetch(`${censoPeClassUrl}?${paramsTotalEscolas.toString()}`, {
+        method: "GET",
+        headers: headers,
+      });
+
+      if (responseTotalEscolas.ok) {
+        const dataTotalEscolas = await responseTotalEscolas.json();
+        const totalEscolasNaCidade = dataTotalEscolas.count;
+        schoolWithLibrarian[1] = totalEscolasNaCidade;
+
+        chartQuatro.data.datasets[0].data = schoolWithLibrarian;
+        chartQuatro.update();
+      } else {
+        throw new Error("Network response was not ok");
+      }
+    } else {
+      throw new Error("Network response was not ok");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+getSchoolsLibrarianInfoTotal();
 
 async function getTypeAdmLibrariesQtGeral(controle) {
   const params = new URLSearchParams({
@@ -549,6 +647,63 @@ async function getTypeAdmLibrariesQt(controle,cidadeValor) {
   }
 }
 
+async function getSchoolsLibrarianInfo(cidadeValor) {
+  const cd1 = {
+    id_cidade: cidadeValor,
+    qt_bibliotecarios: { $gt: 0 } // Usando a sintaxe do MongoDB para "maior que" (>)
+  };
+
+  const cd2 = {
+    id_cidade: cidadeValor,
+    qt_bibliotecarios: { $lt: 1 } // Usando a sintaxe do MongoDB para "maior que" (>)
+  };
+
+  const condicao1JSON = JSON.stringify(cd1);
+  const condicao2JSON = JSON.stringify(cd2);
+  console.log("CONDIÇÃO: " + condicao1JSON + condicao2JSON);
+
+  const params = new URLSearchParams({
+    count: 1,
+    where: condicao1JSON,
+  });
+  try {
+    const response = await fetch(`${censoPeClassUrl}?${params.toString()}`, {
+      method: "GET",
+      headers: headers,
+    });
+    if (response.ok) {
+      const data = await response.json();
+      const escolasComBibliotecario = data.count;
+      schoolWithLibrarian[0] = escolasComBibliotecario;
+
+      const paramsTotalEscolas = new URLSearchParams({
+        count: 1,
+        where: condicao2JSON,
+      });
+
+      const responseTotalEscolas = await fetch(`${censoPeClassUrl}?${paramsTotalEscolas.toString()}`, {
+        method: "GET",
+        headers: headers,
+      });
+
+      if (responseTotalEscolas.ok) {
+        const dataTotalEscolas = await responseTotalEscolas.json();
+        const totalEscolasNaCidade = dataTotalEscolas.count;
+        schoolWithLibrarian[1] = totalEscolasNaCidade;
+
+        chartQuatro.data.datasets[0].data = schoolWithLibrarian;
+        chartQuatro.update();
+      } else {
+        throw new Error("Network response was not ok");
+      }
+    } else {
+      throw new Error("Network response was not ok");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 /// onclick func
 function change(buttonId) {
   // Removendo a classe ativa de todos os botões
@@ -572,11 +727,13 @@ function change(buttonId) {
     admCountGeneral();
     getSchoolsAndLibrariesQtTotal();
     admCountLibrariesGeral();
+    getSchoolsLibrarianInfoTotal();
   } else {
     getCity(cidades[buttonId].id_cidade);
     admCount(cidades[buttonId].id_cidade);
     getSchoolsAndLibrariesQt(cidades[buttonId].id_cidade);
     admCountLibraries(cidades[buttonId].id_cidade);
+    getSchoolsLibrarianInfo(cidades[buttonId].id_cidade);
   }
 }
 
